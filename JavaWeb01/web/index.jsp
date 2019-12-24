@@ -11,6 +11,6 @@
     <title>测试的</title>
   </head>
   <body>
-  test jsp
+  test jsp,这个是测试的jsp页面
   </body>
 </html>
