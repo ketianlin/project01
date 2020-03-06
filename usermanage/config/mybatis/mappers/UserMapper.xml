@@ -14,4 +14,45 @@
     <select id="queryUserAll" resultType="User">
 		select * from tb_user
 	</select>
+
+    <insert id="insertUser" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+		INSERT INTO tb_user (
+			user_name,
+			password,
+			name,
+			age,
+			sex,
+			birthday,
+			created,
+			updated
+		)
+		VALUES
+			(
+				#{userName},
+				#{password},
+				#{name},
+				#{age},
+				#{sex},
+				#{birthday},
+				NOW(),
+				NOW()
+			);
+	</insert>
+	
+	<update id="updateUser">
+		UPDATE `spring-tx`.`tb_user`
+		SET
+		 `user_name` = #{userName},
+		 `name` = #{name},
+		 `age` = #{age},
+		 `sex` = #{sex},
+		 `birthday` = #{birthday}
+		WHERE
+			(`id` = #{id});
+	</update>
+
+	<delete id="deleteUsersByIds">
+		delete from tb_user where id in
+		<foreach collection="ids" item="id" separator="," open="(" close=")">#{id}</foreach>
+	</delete>
 </mapper>

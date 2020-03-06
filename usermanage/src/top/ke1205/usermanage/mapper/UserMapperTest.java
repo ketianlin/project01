@@ -4,6 +4,9 @@ import org.junit.Before;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import top.ke1205.usermanage.pojo.User;
+
+import java.util.Date;
 
 import static org.junit.Assert.*;
 
@@ -27,5 +30,10 @@ public class UserMapperTest {
 
     @Test
     public void queryUserAll() {
+    }
+
+    @Test
+    public void insertUser(){
+
     }
 }
