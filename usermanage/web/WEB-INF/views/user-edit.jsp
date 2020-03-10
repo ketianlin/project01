@@ -44,16 +44,31 @@
 			$.messager.alert('提示','表单还未填写完成!');
 			return ;
 		}
-		$.post("${pageContext.request.contextPath }/user/edit",$("#editContent").serialize(), function(data){
-			if(data.status == 200){
-				$.messager.alert('提示','更新会员成功!');
-				$('#userEdit').window('close');
-				$("#userList").datagrid("reload");
-				clearForm();
-			}else{
-				$.messager.alert('提示','更新会员失败!');
+		$.ajax({
+			method : "PUT",
+			url : "${pageContext.request.contextPath }/rest/user",
+			data : $("#editContent").serialize(),
+			success : function (data, status, xhr) {
+				if(xhr.status == 204){
+					$.messager.alert('提示','更新会员成功!');
+					$('#userEdit').window('close');
+					$("#userList").datagrid("reload");
+					clearForm();
+				}else{
+					$.messager.alert('提示','更新会员失败!');
+				}
 			}
-		});
+		})
+		<%--$.post("${pageContext.request.contextPath }/user/edit",$("#editContent").serialize(), function(data){--%>
+		<%--	if(data.status == 200){--%>
+		<%--		$.messager.alert('提示','更新会员成功!');--%>
+		<%--		$('#userEdit').window('close');--%>
+		<%--		$("#userList").datagrid("reload");--%>
+		<%--		clearForm();--%>
+		<%--	}else{--%>
+		<%--		$.messager.alert('提示','更新会员失败!');--%>
+		<%--	}--%>
+		<%--});--%>
 	}
 	function clearForm(){
 		$('#content').form('reset');

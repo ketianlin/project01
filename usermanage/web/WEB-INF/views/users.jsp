@@ -15,7 +15,7 @@
 <body>
 	<div>
     <table class="easyui-datagrid" id="userList" title="会员列表" 
-	       data-options="singleSelect:false,collapsible:true,url:'${pageContext.request.contextPath }/user/list',method:'get',toolbar:toolbar">
+	       data-options="singleSelect:false,collapsible:true,url:'${pageContext.request.contextPath }/rest/user',method:'get',toolbar:toolbar">
 	    <thead>
 	        <tr>
 	        	<th data-options="field:'ck',checkbox:true"></th>
@@ -100,8 +100,8 @@ var toolbar = [{
     	}
     	$.messager.confirm('确认','确定删除ID为 '+ids+' 的会员吗？',function(r){
     	    if (r){
-            	$.post("${pageContext.request.contextPath }/user/delete",{'ids':ids}, function(data){
-        			if(data.status == 200){
+            	$.post("${pageContext.request.contextPath }/rest/user",{'ids':ids, "_method":"DELETE"}, function(data,status,xhr){
+        			if(xhr.status == 204){
         				$.messager.alert('提示','删除会员成功!',undefined,function(){
         					$("#userList").datagrid("reload");
         				});

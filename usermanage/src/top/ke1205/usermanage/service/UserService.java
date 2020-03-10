@@ -38,4 +38,8 @@ public class UserService {
     public Boolean deleteUsersByIds(List<Long> ids) {
         return userMapper.deleteUsersByIds(ids) > 0;
     }
+
+    public User queryUserById(Long id) {
+        return userMapper.queryUserById(id);
+    }
 }

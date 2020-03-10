@@ -46,8 +46,11 @@
 			$.messager.alert('提示','表单还未填写完成!');
 			return ;
 		}
-		$.post("${pageContext.request.contextPath }/user/save",$("#content").serialize(), function(data){
-			if(data.status == 200){
+		$.post("${pageContext.request.contextPath }/rest/user",$("#content").serialize(), function(data, status, xhr){
+			console.log('data:', data)
+			console.log('status:', status)
+			console.log('xhr:', xhr)
+			if(xhr.status == 201){
 				$.messager.alert('提示','新增会员成功!');
 				$('#userAdd').window('close');
 				$("#userList").datagrid("reload");
